@@ -120,6 +120,18 @@ function log() {
 	echo ""
 }
 
+
+# Comprobación de argumentos
+if [[ "$1" == "-root" ]]; then
+    # Si se utiliza el argumento -root, se inicia como admin sin autenticación
+    echo "Acceso concedido como usuario 'admin'."
+    USUARIO_ACTUAL="admin"
+else
+    # Si no se usa -root, se realiza el login normal
+    login
+fi
+
+
 function login() {
 	for((i=0; i<3; i++)); do
 		echo "-------LOGIN-------"
@@ -142,9 +154,6 @@ function login() {
 	echo ""
 	exit 1
 }
-
-#llamada a la funcion 
-login
 
 
 while true; do
